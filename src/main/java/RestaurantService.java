@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantService {
+
+    RestaurantService service;
+
     private static List<Restaurant> restaurants = new ArrayList<>();
 
     public Restaurant findRestaurantByName(String restaurantName) throws restaurantNotFoundException{
@@ -11,8 +14,7 @@ public class RestaurantService {
                 return restaurant;
             }
         }
-        throw new restaurantNotFoundException("not found "+restaurantName);
-       
+      throw  new restaurantNotFoundException("No restraunt found with name"+restaurantName);
         //DELETE ABOVE STATEMENT AND WRITE CODE HERE
         // COMPlITED THIS FUNCTION
     }

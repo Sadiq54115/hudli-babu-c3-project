@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantServiceTest {
 
+    @BeforeEach
+    public void init(){
+        service=new RestaurantService();
+    }
+
     RestaurantService service = new RestaurantService();
     Restaurant restaurant;
     //REFACTOR ALL THE REPEATED LINES OF CODE
@@ -16,12 +21,20 @@ class RestaurantServiceTest {
     @Test
     public void searching_for_existing_restaurant_should_return_expected_restaurant_object() throws restaurantNotFoundException {
         //WRITE UNIT TEST CASE HERE
+
+        LocalTime openingTime=LocalTime.of(9,0);
+        LocalTime closingTime=LocalTime.of(22,0);
+        service.addRestaurant("taj","belgaum",openingTime,closingTime);
+        restaurant = service.findRestaurantByName("taj");
+        assertEquals("taj",restaurant.getName());
+        assertNotNull(restaurant);
+
     }
 
-    //You may watch the video by Muthukumaran on how to write exceptions in Course 3: Testing and Version control: Optional content
     @Test
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
         //WRITE UNIT TEST CASE HERE
+        service.findRestaurantByName(" "+"sadiq hidli");
     }
     //<<<<<<<<<<<<<<<<<<<<SEARCHING>>>>>>>>>>>>>>>>>>>>>>>>>>
 
